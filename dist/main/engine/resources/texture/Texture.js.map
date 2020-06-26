@@ -1,0 +1,1 @@
+{"version":3,"file":"Texture.js","sourceRoot":"","sources":["../../../../../src/main/scripts/engine/resources/texture/Texture.ts"],"names":[],"mappings":"AAAA,OAAO,QAAQ,MAAM,gBAAgB,CAAC;AAEtC,MAAM,CAAC,OAAO,OAAO,OAAQ,SAAQ,QAAQ;IAGzC,YAAY,KAAuB;QAC/B,KAAK,EAAE,CAAC;QACR,IAAI,CAAC,KAAK,GAAG,KAAK,CAAC;IACvB,CAAC;CACJ"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"Resource.js","sourceRoot":"","sources":["../../../../src/main/scripts/engine/resources/Resource.ts"],"names":[],"mappings":"AAGA,MAAM,CAAC,OAAO,OAAO,QAAQ;IAGzB;IACA,CAAC;IAED,aAAa;QACT,OAAO,IAAI,CAAC,UAAU,CAAC;IAC3B,CAAC;IAED,aAAa,CAAC,UAAsB;QAChC,IAAI,CAAC,UAAU,GAAG,UAAU,CAAC;QAC7B,OAAO,IAAI,CAAC;IAChB,CAAC;CAEJ"}
