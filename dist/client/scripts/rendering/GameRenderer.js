@@ -1,6 +1,6 @@
-import CanvasRenderer from "./CanvasRenderer.js";
 import DimensionRenderer from "./DimensionRenderer.js";
-export default class GameRenderer extends CanvasRenderer {
+import PixelatedCanvasRenderer from "./PixelatedCanvasRenderer.js";
+export default class GameRenderer extends PixelatedCanvasRenderer {
     preInit(canvas) {
         super.preInit(canvas);
     }

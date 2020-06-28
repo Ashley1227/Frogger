@@ -1,0 +1,20 @@
+{
+  "name": "frogger",
+  "description": "You're free to use the engine if you want in your own game.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ashley1227/Frogger.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ashley1227/Frogger/issues"
+  },
+  "homepage": "https://github.com/Ashley1227/Frogger#readme"
+}

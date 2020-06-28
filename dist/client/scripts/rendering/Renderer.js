@@ -8,11 +8,6 @@ export default class Renderer {
         this.postInit(canvas);
     }
     ;
-    offset(x, y) {
-        this.xOffset = x;
-        this.yOffset = y;
-        return this;
-    }
     preInit(canvas) {
         this.canvas = canvas;
         this.children = [];
@@ -27,8 +22,32 @@ export default class Renderer {
         this.onResize();
     }
     ;
+    /**
+     * Offset relative to where it currently is
+     */
+    offset(x, y) {
+        this.xOffset += x;
+        this.xOffset += y;
+        for (let renderer of this.children) {
+            renderer.offset(x, y);
+        }
+        return this;
+    }
+    /**
+     * Absolute offset–change the offset to a set value
+     */
+    offsetAbs(x, y) {
+        this.xOffset = x;
+        this.yOffset = y;
+        for (let renderer of this.children) {
+            renderer.offset(x, y);
+        }
+        return this;
+    }
     addChild(child) {
+        child.parent = this;
         this.children.push(child);
+        return child;
     }
     onResize() {
         this.canvas.width = window.innerWidth;

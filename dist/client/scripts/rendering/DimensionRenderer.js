@@ -1,6 +1,6 @@
-import CanvasRenderer from "./CanvasRenderer.js";
 import ChunkRenderer from "./ChunkRenderer.js";
-export default class DimensionRenderer extends CanvasRenderer {
+import PixelatedCanvasRenderer from "./PixelatedCanvasRenderer.js";
+export default class DimensionRenderer extends PixelatedCanvasRenderer {
     preInit(canvas) {
         super.preInit(canvas);
     }

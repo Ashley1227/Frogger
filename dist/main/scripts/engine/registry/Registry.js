@@ -2,13 +2,6 @@ export default class Registry {
     constructor() {
         this._members = new Map();
     }
-    setIdentifier(identifier) {
-        this.IDENTIFIER = identifier;
-        return this;
-    }
-    getIdentifier() {
-        return this.IDENTIFIER;
-    }
     setDefault(to) {
         this._default = to;
         return this;
@@ -35,7 +28,7 @@ export default class Registry {
     }
     static register(registry, item, identifier) {
         console.debug(`${identifier} registered in ${registry.IDENTIFIER}`);
-        item.setIdentifier(identifier);
+        item.IDENTIFIER = identifier;
         registry.register(item, identifier);
         return item;
     }

@@ -1,6 +1,7 @@
 import Identifier from "../identifier/Identifier.js";
 export default class Block {
-    constructor() {
+    constructor(settings) {
+        this.SETTINGS = settings;
     }
     getIdentifier() {
         return this.IDENTIFIER;

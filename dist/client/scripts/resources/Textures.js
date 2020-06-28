@@ -4,14 +4,15 @@ import TexMap from "../../../main/scripts/engine/resources/texture/map/TexMap.js
 import Registries from "../../../main/scripts/engine/registry/Registries.js";
 import Registry from "../../../main/scripts/engine/registry/Registry.js";
 export default class Textures {
-    static register(t, name) {
-        return Registry.register(Registries.TEXTURES, t, new Identifier("frogger", name));
+    static register(texture, name) {
+        return Registry.register(Registries.TEXTURES, texture, new Identifier("frogger", name));
     }
 }
 // Blocks
 Textures.BLOCKS = Textures.register(TextureLoader.loadResource(new Identifier("frogger", "blocks")), "blocks");
 Textures.BLOCKS_MAP = new TexMap(Textures.BLOCKS).setSubSize(16, 16);
 Textures.DIRT = Textures.register(Textures.BLOCKS_MAP.createSub(0, 0), "dirt");
+Textures.GRASS = Textures.register(Textures.BLOCKS_MAP.createSub(1, 0), "grass");
 // Entities
 Textures.FROG = Textures.register(TextureLoader.loadResource(new Identifier("frogger", "entity/frog")), "frog");
 Textures.FROG_MAP = new TexMap(Textures.FROG).setSubSize(16, 16);

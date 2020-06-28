@@ -1,10 +1,13 @@
 import Identifiable from "../identifier/Identifiable.js";
 import Identifier from "../identifier/Identifier.js";
+import BlockSettings from "./BlockSettings.js";
 
 export default class Block implements Identifiable {
-    IDENTIFIER: Identifier;
+    public IDENTIFIER: Identifier;
+    public SETTINGS: BlockSettings;
 
-    constructor() {
+    constructor(settings: BlockSettings) {
+        this.SETTINGS = settings;
     }
 
     getIdentifier(): Identifier {

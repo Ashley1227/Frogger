@@ -1,11 +1,17 @@
-import GameRenderer from "./rendering/GameRenderer.js";
+import GameRenderer from "./engine/rendering/GameRenderer.js";
+import KeyboardInput from "./engine/input/keyboard/KeyboardInput.js";
+import MouseInput from "./engine/input/mouse/MouseInput.js";
 
+var canvas: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById("canvas");
 var renderer: GameRenderer = new GameRenderer(
-    <HTMLCanvasElement>document.getElementById("canvas")
+    canvas
 );
-draw();
 
-function draw() {
+function render() {
     renderer.render();
-    window.requestAnimationFrame(draw);
+    window.requestAnimationFrame(render);
 }
+render();
+
+KeyboardInput.initialise();
+MouseInput.initialise();

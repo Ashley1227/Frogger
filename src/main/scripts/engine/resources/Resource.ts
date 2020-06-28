@@ -6,14 +6,4 @@ export default class Resource implements Identifiable {
 
     constructor() {
     }
-
-    getIdentifier(): Identifier {
-        return this.IDENTIFIER;
-    }
-
-    setIdentifier(identifier: Identifier): Identifiable {
-        this.IDENTIFIER = identifier;
-        return this;
-    }
-
 }

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+//    "module": "AMD", // but needs requirejs
     "module": "es6",
     "target": "es6",
     "outDir": "./dist",

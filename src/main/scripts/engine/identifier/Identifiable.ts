@@ -5,7 +5,4 @@ import Identifier from "./Identifier.js";
  */
 export default interface Identifiable {
     IDENTIFIER: Identifier;
-
-    setIdentifier(identifier: Identifier): Identifiable;
-    getIdentifier(): Identifier;
 }

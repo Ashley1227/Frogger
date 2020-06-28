@@ -11,14 +11,6 @@ export default class Registry<T extends Identifiable> implements Identifiable {
         this._members = new Map<string, T>();
     }
 
-    setIdentifier(identifier: Identifier): Identifiable {
-        this.IDENTIFIER = identifier;
-        return this;
-    }
-    getIdentifier(): Identifier {
-        return this.IDENTIFIER;
-    }
-
     setDefault(to: T): Registry<T> {
         this._default = to;
         return this;
@@ -48,7 +40,7 @@ export default class Registry<T extends Identifiable> implements Identifiable {
     static register<T extends Identifiable>(registry: Registry<T>, item: T, identifier: Identifier): T {
         console.debug(`${identifier} registered in ${registry.IDENTIFIER}`);
 
-        item.setIdentifier(identifier);
+        item.IDENTIFIER = identifier;
         registry.register(item, identifier);
         return item;
     }
