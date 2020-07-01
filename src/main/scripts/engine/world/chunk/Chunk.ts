@@ -1,25 +1,28 @@
-import Block from "../../block/Block.js";
-import World from "../World.js";
+import BlockType from "../../block/BlockType";
+import World from "../World";
+import BlockTypes from "../../../block/type/BlockTypes";
+import Vector2 from "../../math/Vector2";
 
 export default class Chunk {
     static width = 16;
     static height = 16;
 
     public world: World;
-    public blocks: Block[][];
+    public blocks: BlockType[][];
 
-    public x: number;
-    public y: number;
+    public position: Vector2;
 
-    constructor(world: World, x: number, y: number) {
+    constructor(world: World, position: Vector2) {
         this.world = world;
-        this.x = x;
-        this.y = y;
+        this.position = position;
+        this.fillWith(BlockTypes.GRASS);
     }
 
-    fillWith(block: Block): Chunk {
-        for(let y: number = 0; y < Chunk.height; y++) {
-            for(let x: number = 0; x < Chunk.width; x++) {
+    fillWith(block: BlockType): Chunk {
+        this.blocks = [];
+        for (let x: number = 0; x < Chunk.height; x++) {
+            this.blocks[x] = [];
+            for (let y: number = 0; y < Chunk.width; y++) {
                 this.blocks[x][y] = block;
             }
         }

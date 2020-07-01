@@ -8,25 +8,27 @@ export default abstract class Renderer {
     public xOffset: number = 0;
     public yOffset: number = 0;
 
-    constructor(canvas: HTMLCanvasElement) {
-        this.preInit(canvas);
-        this.init(canvas);
-        this.postInit(canvas);
-    };
+    private cFPS = 0;
 
-    preInit(canvas: HTMLCanvasElement): void {
+    constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas;
         this.children = [];
-    };
-
-    init(canvas: HTMLCanvasElement): void {
         canvas.parentElement.onresize = () => {
             this.onResize();
         };
-    }
-    postInit(canvas: HTMLCanvasElement): void {
-        this.onResize();
+        setInterval(() => {
+            this.countFPS(this.cFPS);
+            this.cFPS = 0;
+        }, 1000);
     };
+
+    initialise(): void {
+        this.onResize();
+    }
+
+    countFPS(fps: number) {
+
+    }
 
     /**
      * Offset relative to where it currently is
@@ -70,5 +72,6 @@ export default abstract class Renderer {
             if(c.shouldRender)
                 c.render();
         }
+        this.cFPS++;
     };
 }

@@ -1,4 +1,4 @@
-import Resource from "../../../../../main/scripts/engine/resources/Resource.js";
+import Resource from "../../../../../main/scripts/engine/resources/Resource";
 
 export default class Texture extends Resource {
     public image: HTMLImageElement;

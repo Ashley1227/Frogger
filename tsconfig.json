@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
 //    "module": "AMD", // but needs requirejs
-    "module": "es6",
+    "module": "System",
     "target": "es6",
-    "outDir": "./dist",
+    "outFile": "dist/bundle.js",
     "sourceMap": true,
     "lib": [
       "es6",

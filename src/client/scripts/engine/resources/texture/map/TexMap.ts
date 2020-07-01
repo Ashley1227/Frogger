@@ -1,4 +1,4 @@
-import Texture from "../Texture.js";
+import Texture from "../Texture";
 
 export default class TexMap extends Texture {
     public subWidth: number = 16;

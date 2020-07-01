@@ -1,9 +1,13 @@
-import Registry from "./Registry.js";
-import Identifier from "../identifier/Identifier.js";
-import Block from "../block/Block.js";
-import World from "../world/World.js";
-import ChunkGenerator from "../world/chunk/generator/ChunkGenerator.js";
+import Registry from "./Registry";
+import Identifier from "../identifier/Identifier";
+import BlockType from "../block/BlockType";
+import World from "../world/World";
+import ChunkGenerator from "../world/chunk/generator/ChunkGenerator";
+import BlockRenderType from "../block/BlockRenderType";
 
+console.debug("");
+console.debug("Main Registries");
+console.debug("==========");
 export var REGISTRIES: Registry<Registry<any>> = new Registry<Registry<any>>();
 REGISTRIES.IDENTIFIER = new Identifier("frogger","registries");
 export default class Registries {
@@ -17,9 +21,14 @@ export default class Registries {
         new Registry<ChunkGenerator>(),
         new Identifier("frogger","chunk_generators")
     );
-    public static BLOCKS: Registry<Block> = Registry.register(
+    public static BLOCK_TYPES: Registry<BlockType> = Registry.register(
         REGISTRIES,
-        new Registry<Block>(),
-        new Identifier("frogger","blocks")
+        new Registry<BlockType>(),
+        new Identifier("frogger","block_types")
+    );
+    public static BLOCK_RENDER_TYPES: Registry<BlockRenderType> = Registry.register(
+        REGISTRIES,
+        new Registry<BlockRenderType>(),
+        new Identifier("frogger","block_render_types")
     );
 }

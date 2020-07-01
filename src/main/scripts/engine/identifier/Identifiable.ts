@@ -1,4 +1,4 @@
-import Identifier from "./Identifier.js";
+import Identifier from "./Identifier";
 
 /**
  * Things that can have identifiers

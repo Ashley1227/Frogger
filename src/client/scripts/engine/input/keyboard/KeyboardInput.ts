@@ -1,12 +1,12 @@
 export default class KeyboardInput {
-    public static keys = [];
+    public static keysDown = [];
 
     static initialise() {
         document.addEventListener("keydown", function(event) {
-            KeyboardInput.keys[event.code] = true;
+            KeyboardInput.keysDown[event.code] = true;
         }, false);
         document.addEventListener("keyup", function(event) {
-            KeyboardInput.keys[event.code] = false;
+            KeyboardInput.keysDown[event.code] = false;
         }, false);
     }
 }

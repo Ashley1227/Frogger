@@ -1,4 +1,4 @@
-import Resource from "./Resource.js";
+import Resource from "./Resource";
 import Identifier from "../identifier/Identifier";
 
 export default abstract class ResourceLoader {

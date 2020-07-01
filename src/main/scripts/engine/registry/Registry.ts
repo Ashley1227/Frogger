@@ -1,7 +1,7 @@
-import Identifier from "../identifier/Identifier.js";
-import Identifiable from "../identifier/Identifiable.js";
+import Identifier from "../identifier/Identifier";
+import Identifiable from "../identifier/Identifiable";
 
-export default class Registry<T extends Identifiable> implements Identifiable {
+export default class Registry<T extends Identifiable> implements Identifiable, Iterable<T> {
     public IDENTIFIER: Identifier;
 
     private _members: Map<string, T>;
@@ -47,5 +47,9 @@ export default class Registry<T extends Identifiable> implements Identifiable {
 
     static get<T extends Identifiable>(registry: Registry<T>, identifier: Identifier | string): T {
         return registry.get(identifier);
+    }
+
+    [Symbol.iterator](): Iterator<T> {
+        return this._members.values();
     }
 }

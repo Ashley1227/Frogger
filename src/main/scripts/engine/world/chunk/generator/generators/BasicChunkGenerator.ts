@@ -1,11 +1,11 @@
-import ChunkGenerator from "../ChunkGenerator.js";
-import Chunk from "../../Chunk.js";
-import Block from "../../../../block/Block.js";
+import ChunkGenerator from "../ChunkGenerator";
+import Chunk from "../../Chunk";
+import BlockType from "../../../../block/BlockType";
 
 export default class BasicChunkGenerator extends ChunkGenerator {
-    public block: Block;
+    public block: BlockType;
 
-    constructor(block: Block) {
+    constructor(block: BlockType) {
         super();
         this.block = block;
     }

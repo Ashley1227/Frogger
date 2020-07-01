@@ -1,10 +1,14 @@
-import Identifier from "../identifier/Identifier.js";
+import Identifier from "../identifier/Identifier";
 
 export default class BlockSettings {
     public TEXTURE: Identifier;
 
-    public texture(identifier: Identifier): BlockSettings {
-        this.TEXTURE = identifier;
+    constructor() {
+    }
+
+
+    public texture(texture: Identifier): BlockSettings {
+        this.TEXTURE = texture;
         return this;
     }
 }

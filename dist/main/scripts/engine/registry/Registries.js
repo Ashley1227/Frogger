@@ -1,10 +1,26 @@
-import Registry from "./Registry.js";
-import Identifier from "../identifier/Identifier.js";
-export var REGISTRIES = new Registry();
-REGISTRIES.IDENTIFIER = new Identifier("frogger", "registries");
-export default class Registries {
-}
-Registries.WORLDS = Registry.register(REGISTRIES, new Registry(), new Identifier("frogger", "worlds"));
-Registries.CHUNK_GENERATORS = Registry.register(REGISTRIES, new Registry(), new Identifier("frogger", "chunk_generators"));
-Registries.BLOCKS = Registry.register(REGISTRIES, new Registry(), new Identifier("frogger", "blocks"));
+System.register(["./Registry.js", "../identifier/Identifier.js"], function (exports_1, context_1) {
+    "use strict";
+    var Registry_js_1, Identifier_js_1, REGISTRIES, Registries;
+    var __moduleName = context_1 && context_1.id;
+    return {
+        setters: [
+            function (Registry_js_1_1) {
+                Registry_js_1 = Registry_js_1_1;
+            },
+            function (Identifier_js_1_1) {
+                Identifier_js_1 = Identifier_js_1_1;
+            }
+        ],
+        execute: function () {
+            exports_1("REGISTRIES", REGISTRIES = new Registry_js_1.default());
+            REGISTRIES.IDENTIFIER = new Identifier_js_1.default("frogger", "registries");
+            Registries = class Registries {
+            };
+            exports_1("default", Registries);
+            Registries.WORLDS = Registry_js_1.default.register(REGISTRIES, new Registry_js_1.default(), new Identifier_js_1.default("frogger", "worlds"));
+            Registries.CHUNK_GENERATORS = Registry_js_1.default.register(REGISTRIES, new Registry_js_1.default(), new Identifier_js_1.default("frogger", "chunk_generators"));
+            Registries.BLOCK_TYPES = Registry_js_1.default.register(REGISTRIES, new Registry_js_1.default(), new Identifier_js_1.default("frogger", "blocks"));
+        }
+    };
+});
 //# sourceMappingURL=Registries.js.map

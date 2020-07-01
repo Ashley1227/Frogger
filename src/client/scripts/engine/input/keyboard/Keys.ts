@@ -1,8 +1,11 @@
-import Registry from "../../../../../main/scripts/engine/registry/Registry.js";
-import ClientRegistries from "../../registry/ClientRegistries.js";
-import Identifier from "../../../../../main/scripts/engine/identifier/Identifier.js";
-import Key from "./Key.js";
+import Registry from "../../../../../main/scripts/engine/registry/Registry";
+import ClientRegistries from "../../registry/ClientRegistries";
+import Identifier from "../../../../../main/scripts/engine/identifier/Identifier";
+import Key from "./Key";
 
+console.debug("");
+console.debug("Keys");
+console.debug("==========");
 export default class Keys {
     public static ZERO: Key = Keys.register(new Key("Digit0"), "zero");
     public static ONE: Key = Keys.register(new Key("Digit1"), "one");

@@ -1,8 +1,11 @@
-import Registry from "../../../../../main/scripts/engine/registry/Registry.js";
-import ClientRegistries from "../../registry/ClientRegistries.js";
-import Identifier from "../../../../../main/scripts/engine/identifier/Identifier.js";
-import MouseButton from "./MouseButton.js";
+import Registry from "../../../../../main/scripts/engine/registry/Registry";
+import ClientRegistries from "../../registry/ClientRegistries";
+import Identifier from "../../../../../main/scripts/engine/identifier/Identifier";
+import MouseButton from "./MouseButton";
 
+console.debug("");
+console.debug("Mouse Buttons");
+console.debug("==========");
 export default class MouseButtons {
     public static LEFT: MouseButton = MouseButtons.register(new MouseButton(0), "left");
     public static RIGHT: MouseButton = MouseButtons.register(new MouseButton(1), "right");

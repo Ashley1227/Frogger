@@ -1,5 +1,5 @@
-import Identifiable from "../identifier/Identifiable.js";
-import Identifier from "../identifier/Identifier.js";
+import Identifiable from "../identifier/Identifiable";
+import Identifier from "../identifier/Identifier";
 
 export default class Resource implements Identifiable {
     IDENTIFIER: Identifier;

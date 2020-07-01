@@ -1,10 +1,13 @@
-import TextureLoader from "./engine/resources/texture/TextureLoader.js";
-import Identifier from "../../main/scripts/engine/identifier/Identifier.js";
-import TexMap from "./engine/resources/texture/map/TexMap.js";
-import Texture from "./engine/resources/texture/Texture.js";
-import Registry from "../../main/scripts/engine/registry/Registry.js";
-import ClientRegistries from "./engine/registry/ClientRegistries.js";
+import TextureLoader from "./engine/resources/texture/TextureLoader";
+import Identifier from "../../main/scripts/engine/identifier/Identifier";
+import TexMap from "./engine/resources/texture/map/TexMap";
+import Texture from "./engine/resources/texture/Texture";
+import Registry from "../../main/scripts/engine/registry/Registry";
+import ClientRegistries from "./engine/registry/ClientRegistries";
 
+console.debug("");
+console.debug("Textures");
+console.debug("==========");
 export default class Textures {
     // Blocks
     static BLOCKS: Texture = Textures.register(TextureLoader.loadResource(new Identifier("frogger", "blocks")), "blocks");

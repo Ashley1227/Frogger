@@ -1,6 +1,6 @@
-import Identifiable from "../../../identifier/Identifiable.js";
-import Identifier from "../../../identifier/Identifier.js";
-import Chunk from "../Chunk.js";
+import Identifiable from "../../../identifier/Identifiable";
+import Identifier from "../../../identifier/Identifier";
+import Chunk from "../Chunk";
 
 export default abstract class ChunkGenerator implements Identifiable {
     IDENTIFIER: Identifier;

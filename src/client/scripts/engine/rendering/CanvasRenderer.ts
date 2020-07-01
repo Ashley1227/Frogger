@@ -1,20 +1,14 @@
-import Renderer from "./Renderer.js";
-import Texture from "../resources/texture/Texture.js";
+import Renderer from "./Renderer";
+import Texture from "../resources/texture/Texture";
 
 export default class CanvasRenderer extends Renderer {
     public ctx: CanvasRenderingContext2D;
 
-    preInit(canvas: HTMLCanvasElement): void {
-        super.preInit(canvas);
-        this.ctx = canvas.getContext("2d");
-    }
-
-    init(canvas: HTMLCanvasElement): void {
-        super.init(canvas);
-    }
-
-    postInit(canvas: HTMLCanvasElement): void {
-        super.postInit(canvas);
+    constructor(canvas: HTMLCanvasElement) {
+        super(canvas);
+        this.ctx = canvas.getContext("2d", {
+            alpha: false
+        });
     }
 
     render() {
@@ -27,7 +21,7 @@ export default class CanvasRenderer extends Renderer {
     }
 
     drawString(text: string, x: number, y: number, size: number, fillStyle: string): void {
-        this.ctx.font = `${size}px Verdana`
+        this.ctx.font = `${size}px Helvetica Neue`
         this.ctx.fillStyle = fillStyle;
         this.ctx.fillText(text, x + this.xOffset, y + this.yOffset);
     }

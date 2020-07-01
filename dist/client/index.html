@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gaming</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+    <script src="https://unpkg.com/systemjs@2.1.1/dist/s.js"></script>
+    <script src="https://unpkg.com/systemjs@2.1.1/dist/extras/named-register.js"></script>
+
+    <script src="../bundle.js"></script>
+
+</head>
+<body>
+    <canvas id="canvas" width=32 height=32 style="width:100%;height:100%;"></canvas>
+    <script>
+        System.import("main/scripts/engine/registry/Registries");
+        System.import("client/scripts/engine/registry/ClientRegistries");
+
+        System.import("client/scripts/Textures");
+        System.import("client/scripts/engine/input/keyboard/Keys");
+        System.import("client/scripts/engine/input/mouse/MouseButtons");
+        System.import("client/scripts/input/Controls");
+
+        System.import("client/scripts/FroggerClient");
+    </script>
+</body>
+</html>

@@ -1,10 +1,14 @@
-import Registry from "../../../../main/scripts/engine/registry/Registry.js";
-import {REGISTRIES} from "../../../../main/scripts/engine/registry/Registries.js";
-import Texture from "../resources/texture/Texture.js";
-import Identifier from "../../../../main/scripts/engine/identifier/Identifier.js";
-import Key from "../input/keyboard/Key.js";
+import Registry from "../../../../main/scripts/engine/registry/Registry";
+import {REGISTRIES} from "../../../../main/scripts/engine/registry/Registries";
+import Texture from "../resources/texture/Texture";
+import Identifier from "../../../../main/scripts/engine/identifier/Identifier";
+import Key from "../input/keyboard/Key";
 import MouseButton from "../input/mouse/MouseButton";
+import KeyboardControl from "../input/control/KeyboardControl";
 
+console.debug("");
+console.debug("Client Registries");
+console.debug("==========");
 export default class ClientRegistries {
     public static TEXTURES: Registry<Texture> = Registry.register(
         REGISTRIES,
@@ -20,5 +24,10 @@ export default class ClientRegistries {
         REGISTRIES,
         new Registry<MouseButton>(),
         new Identifier("frogger","mouse_buttons")
+    );
+    public static KEYBOARD_CONTROLS: Registry<KeyboardControl> = Registry.register(
+        REGISTRIES,
+        new Registry<KeyboardControl>(),
+        new Identifier("frogger","keyboard_controls")
     );
 }
