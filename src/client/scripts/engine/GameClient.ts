@@ -1,6 +1,6 @@
 import KeyboardInput from "./input/keyboard/KeyboardInput";
 import MouseInput from "./input/mouse/MouseInput";
-import Renderer from "./rendering/Renderer";
+import Renderer from "./rendering/renderer/Renderer";
 import World from "../../../main/scripts/engine/world/World";
 
 export default class GameClient {
@@ -25,6 +25,8 @@ export default class GameClient {
     initialise(): GameClient {
         KeyboardInput.initialise();
         MouseInput.initialise();
+        this.world.initialise();
+
         return this;
     }
 }

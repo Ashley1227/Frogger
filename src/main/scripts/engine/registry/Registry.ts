@@ -37,11 +37,16 @@ export default class Registry<T extends Identifiable> implements Identifiable, I
         return item;
     }
 
-    static register<T extends Identifiable>(registry: Registry<T>, item: T, identifier: Identifier): T {
-        console.debug(`${identifier} registered in ${registry.IDENTIFIER}`);
+    static register<R extends Identifiable>(registry: Registry<R>, item: R, identifier: Identifier): R {
 
+        if(registry._members.has(identifier.toString())) {
+            console.warn(`${item} already exists in ${registry}, it cannot be registered twice. Skipping...`);
+            return;
+        }
         item.IDENTIFIER = identifier;
         registry.register(item, identifier);
+
+        console.debug(`${identifier} registered in ${registry.IDENTIFIER}`);
         return item;
     }
 

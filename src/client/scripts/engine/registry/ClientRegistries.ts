@@ -5,6 +5,9 @@ import Identifier from "../../../../main/scripts/engine/identifier/Identifier";
 import Key from "../input/keyboard/Key";
 import MouseButton from "../input/mouse/MouseButton";
 import KeyboardControl from "../input/control/KeyboardControl";
+import Renderer from "../rendering/renderer/Renderer";
+import Font from "../text/font/Font";
+import FillStyle from "../text/font/FillStyle";
 
 console.debug("");
 console.debug("Client Registries");
@@ -14,6 +17,11 @@ export default class ClientRegistries {
         REGISTRIES,
         new Registry<Texture>(),
         new Identifier("frogger","textures")
+    );
+    public static RENDERERS: Registry<Renderer> = Registry.register(
+        REGISTRIES,
+        new Registry<Renderer>(),
+        new Identifier("frogger","renderers")
     );
     public static KEYS: Registry<Key> = Registry.register(
         REGISTRIES,
@@ -29,5 +37,15 @@ export default class ClientRegistries {
         REGISTRIES,
         new Registry<KeyboardControl>(),
         new Identifier("frogger","keyboard_controls")
+    );
+    public static FONTS: Registry<Font> = Registry.register(
+        REGISTRIES,
+        new Registry<Font>(),
+        new Identifier("frogger","fonts")
+    );
+    public static FILL_STYLES: Registry<FillStyle> = Registry.register(
+        REGISTRIES,
+        new Registry<FillStyle>(),
+        new Identifier("frogger","fill_styles")
     );
 }

@@ -1,9 +1,10 @@
 import Registry from "./Registry";
 import Identifier from "../identifier/Identifier";
-import BlockType from "../block/BlockType";
+import BlockType from "../block/type/BlockType";
 import World from "../world/World";
 import ChunkGenerator from "../world/chunk/generator/ChunkGenerator";
-import BlockRenderType from "../block/BlockRenderType";
+import BlockRenderType from "../block/type/BlockRenderType";
+import EntityType from "../entity/type/EntityType";
 
 console.debug("");
 console.debug("Main Registries");
@@ -30,5 +31,10 @@ export default class Registries {
         REGISTRIES,
         new Registry<BlockRenderType>(),
         new Identifier("frogger","block_render_types")
+    );
+    public static ENTITY_TYPES: Registry<EntityType> = Registry.register(
+        REGISTRIES,
+        new Registry<EntityType>(),
+        new Identifier("frogger","entity_types")
     );
 }

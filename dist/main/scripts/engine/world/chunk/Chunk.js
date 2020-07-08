@@ -7,7 +7,7 @@ System.register([], function (exports_1, context_1) {
         execute: function () {
             Chunk = class Chunk {
                 constructor(world, x, y) {
-                    this.world = world;
+                    this.WORLD = world;
                     this.x = x;
                     this.y = y;
                 }

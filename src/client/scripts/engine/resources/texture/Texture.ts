@@ -1,26 +1,15 @@
 import Resource from "../../../../../main/scripts/engine/resources/Resource";
+import Vector2 from "../../../../../main/scripts/engine/math/Vector2";
 
 export default class Texture extends Resource {
     public image: HTMLImageElement;
     public width: number;
     public height: number;
 
-    /**
-     * Source X
-     */
-    public sX: number;
-    /**
-     * Source Y
-     */
-    public sY: number;
-    /**
-     * Source width
-     */
-    public sW: number;
-    /**
-     * Source height
-     */
-    public sH: number;
+    public pos: Vector2;
+    public size: Vector2;
+
+    public inGameSize: Vector2;
 
     constructor(image: HTMLImageElement) {
         super();
@@ -29,14 +18,17 @@ export default class Texture extends Resource {
         this.height = image.height;
 
         this.setViewport(0, 0, this.width, this.height);
+        this.setWorldSize(new Vector2(1, 1));
+    }
+
+    setWorldSize(size: Vector2): Texture {
+        this.inGameSize = size;
+        return this;
     }
 
     setViewport(sX: number, sY: number, sW: number, sH: number): Texture {
-        this.sX = sX;
-        this.sY = sY;
-
-        this.sW = sW;
-        this.sH = sH;
+        this.pos = new Vector2(sX, sY);
+        this.size = new Vector2(sW, sH);
         return this;
     }
 

@@ -1,6 +1,6 @@
 import ChunkGenerator from "../ChunkGenerator";
 import Chunk from "../../Chunk";
-import BlockType from "../../../../block/BlockType";
+import BlockType from "../../../../block/type/BlockType";
 
 export default class BasicChunkGenerator extends ChunkGenerator {
     public block: BlockType;
@@ -10,7 +10,7 @@ export default class BasicChunkGenerator extends ChunkGenerator {
         this.block = block;
     }
     generate(chunk: Chunk): Chunk {
-        chunk.fillWith(this.block);
+        chunk.fillWith(this.block.DEFAULT_STATE);
         return chunk;
     }
 }
