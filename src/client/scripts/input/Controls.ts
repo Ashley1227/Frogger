@@ -16,6 +16,9 @@ export default class Controls {
 
     public static DEBUG_TOGGLE: KeyboardControl = Controls.registerKeyboard(new KeyboardControl(Keys.F3), "debug");
 
+    public static ZOOM_OUT: KeyboardControl = Controls.registerKeyboard(new KeyboardControl(Keys.MINUS), "zoom_out");
+    public static ZOOM_IN: KeyboardControl = Controls.registerKeyboard(new KeyboardControl(Keys.EQUAL), "zoom_in");
+
     static registerKeyboard(control: KeyboardControl, name: string): KeyboardControl {
         return Registry.register(ClientRegistries.KEYBOARD_CONTROLS, control, new Identifier("frogger", name));
     }

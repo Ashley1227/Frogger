@@ -5,6 +5,8 @@ import World from "../world/World";
 import ChunkGenerator from "../world/chunk/generator/ChunkGenerator";
 import BlockRenderType from "../block/type/BlockRenderType";
 import EntityType from "../entity/type/EntityType";
+import Tag from "../tag/Tag";
+import EntityBehavior from "../entity/behavior/EntityBehavior";
 
 console.debug("");
 console.debug("Main Registries");
@@ -36,5 +38,10 @@ export default class Registries {
         REGISTRIES,
         new Registry<EntityType>(),
         new Identifier("frogger","entity_types")
+    );
+    public static TAGS: Registry<Tag<any>> = Registry.register(
+        REGISTRIES,
+        new Registry<Tag<any>>(),
+        new Identifier("frogger","tags")
     );
 }

@@ -10,7 +10,7 @@ export default class BasicChunkGenerator extends ChunkGenerator {
         this.block = block;
     }
     generate(chunk: Chunk): Chunk {
-        chunk.fillWith(this.block.DEFAULT_STATE);
+        chunk.fillWith(this.block.createState());
         return chunk;
     }
 }

@@ -7,6 +7,7 @@ import GrassBlockType from "./types/GrassBlockType";
 import BlockState from "../../engine/block/state/BlockState";
 import Textures from "../../../../client/scripts/Textures";
 import Renderers from "../../../../client/scripts/rendering/Renderers";
+import GrassBlockState from "../state/states/GrassBlockState";
 
 console.debug("");
 console.debug("Block Types");
@@ -15,32 +16,37 @@ export default class BlockTypes {
     public static DIRT: BlockType = BlockTypes.register(
         new BlockType(
             new BlockSettings()
-        )
-            .basicBlockState()
-            .setDefaultRenderer(new Identifier("frogger", "dirt"))
-            .TYPE,
+        ),
         "dirt"
     );
     public static GRASS: BlockType = BlockTypes.register(
         new GrassBlockType(
             new BlockSettings()
-        )
-            .basicBlockState()
-            .setDefaultRenderer(new Identifier("frogger", "grass"))
-            .TYPE,
+        ),
         "grass"
     );
     public static RED_FLOWER: BlockType = BlockTypes.register(
         new GrassBlockType(
             new BlockSettings()
-        )
-            .basicBlockState()
-            .setDefaultRenderer(new Identifier("frogger", "red_flower"))
-            .TYPE,
+        ),
         "red_flower"
     );
+    public static ASPHALT: BlockType = BlockTypes.register(
+        new BlockType(
+            new BlockSettings()
+        ),
+        "asphalt"
+    );
+
+    static initialiseClass() {
+        this.DIRT.basicBlockState().setDefaultRenderer(new Identifier("frogger", "dirt"));
+        this.GRASS.setDefaultState(new GrassBlockState(this.GRASS).setDefaultRenderer(new Identifier("frogger", "grass")));
+        this.RED_FLOWER.basicBlockState().setDefaultRenderer(new Identifier("frogger", "red_flower"));
+        this.ASPHALT.basicBlockState().setDefaultRenderer(new Identifier("frogger", "asphalt"));
+    }
 
     static register(block: BlockType, name: string): BlockType {
         return Registry.register(Registries.BLOCK_TYPES, block, new Identifier("frogger", name));
     }
 }
+BlockTypes.initialiseClass();

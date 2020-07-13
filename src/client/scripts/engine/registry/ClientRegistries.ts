@@ -8,6 +8,7 @@ import KeyboardControl from "../input/control/KeyboardControl";
 import Renderer from "../rendering/renderer/Renderer";
 import Font from "../text/font/Font";
 import FillStyle from "../text/font/FillStyle";
+import Sound from "../resources/sound/Sound";
 
 console.debug("");
 console.debug("Client Registries");
@@ -17,6 +18,11 @@ export default class ClientRegistries {
         REGISTRIES,
         new Registry<Texture>(),
         new Identifier("frogger","textures")
+    );
+    public static SOUNDS: Registry<Sound> = Registry.register(
+        REGISTRIES,
+        new Registry<Sound>(),
+        new Identifier("frogger","sounds")
     );
     public static RENDERERS: Registry<Renderer> = Registry.register(
         REGISTRIES,

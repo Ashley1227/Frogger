@@ -3,6 +3,15 @@ import Hashable from "../interfaces/Hashable";
 import {lerp} from "./math";
 
 export default class Vector2 implements Hashable {
+    public static readonly ZERO: Vector2 = new Vector2(0, 0);
+    public static readonly ONE: Vector2 = new Vector2(1, 1);
+    public static readonly TWO: Vector2 = new Vector2(2, 2);
+
+    public static readonly UP: Vector2 = new Vector2(0, -1);
+    public static readonly DOWN: Vector2 = new Vector2(0, 1);
+    public static readonly LEFT: Vector2 = new Vector2(-1, 0);
+    public static readonly RIGHT: Vector2 = new Vector2(1, 0);
+
     public x: number;
     public y: number;
 
@@ -46,13 +55,36 @@ export default class Vector2 implements Hashable {
     inverse(): Vector2 {
         return new Vector2(-this.x, -this.y);
     }
+    static inverse(a: Vector2): Vector2 {
+        return a.inverse();
+    }
 
     abs(): Vector2 {
         return new Vector2(Math.abs(this.x), Math.abs(this.y));
     }
+    static abs(a: Vector2): Vector2 {
+        return a.abs();
+    }
 
-    toString(): string {
-        return `Vector2(${this.x},${this.y})`;
+    floor(): Vector2 {
+        return new Vector2(Math.floor(this.x), Math.floor(this.y));
+    }
+    static floor(a: Vector2): Vector2 {
+        return a.floor();
+    }
+
+    round(): Vector2 {
+        return new Vector2(Math.round(this.x), Math.round(this.y));
+    }
+    static round(a: Vector2): Vector2 {
+        return a.round();
+    }
+
+    ceil(): Vector2 {
+        return new Vector2(Math.ceil(this.x), Math.ceil(this.y));
+    }
+    static ceil(a: Vector2): Vector2 {
+        return a.ceil();
     }
 
     static lerp(a: Vector2, b: Vector2, by: number): Vector2 {
@@ -61,8 +93,28 @@ export default class Vector2 implements Hashable {
         return new Vector2(retX, retY);
     }
 
+    equals(other: Vector2): boolean {
+        return this.x === other.x && this.y === other.y;
+    }
+
+    up(): Vector2 {
+        return this.add(Vector2.UP);
+    }
+    down(): Vector2 {
+        return this.add(Vector2.DOWN);
+    }
+    left(): Vector2 {
+        return this.add(Vector2.LEFT);
+    }
+    right(): Vector2 {
+        return this.add(Vector2.RIGHT);
+    }
+
+    toString(): string {
+        return `(${this.x},${this.y})`;
+    }
+
     getHashCode(): string {
         return this.toString();
     }
-
 }

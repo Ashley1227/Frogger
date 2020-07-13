@@ -4,6 +4,7 @@ import EntityStateRenderer from "../EntityStateRenderer";
 import EntityState from "../../../../../../../main/scripts/engine/entity/state/EntityState";
 import Direction from "../../../../../../../main/scripts/engine/math/Direction";
 import World from "../../../../../../../main/scripts/engine/world/World";
+import Textures from "../../../../../Textures";
 
 export default class BasicEntityStateRenderer<T extends EntityState> extends EntityStateRenderer<T> {
     public TEXTURE: Texture;
@@ -17,13 +18,27 @@ export default class BasicEntityStateRenderer<T extends EntityState> extends Ent
         return this;
     }
 
-    renderEntityState(size: Vector2, position: Vector2, state: T): void {
+    renderEntityState(position: Vector2, state: T): void {
+        // let delta: number = (Date.now() - state.WORLD.lastTick) / World.TICK_INTERVAL;
+        // this.drawTexture(this.getTexture(state), Vector2.lerp(
+        //     state.prevPos.add(CLIENT.camera.position).multiply(size),
+        //     state.position.add(CLIENT.camera.position).multiply(size),
+        //     delta
+        //     ), size.multiply(this.getTexture(state).inGameSize), Direction.lerp(state.prevDir, state.direction, delta)
+        // );
         let delta: number = (Date.now() - state.WORLD.lastTick) / World.TICK_INTERVAL;
+        // this.drawTexture(
+        //     Textures.STREAKY_DIRT, Vector2.lerp(
+        //     state.prevPos,
+        //     state.position,
+        //     delta
+        //     ), this.getTexture(state).inGameSize
+        // );
         this.drawTexture(this.getTexture(state), Vector2.lerp(
-            new Vector2(state.prevPos.x * size.x, state.prevPos.y * size.y),
-            new Vector2(state.position.x * size.x, state.position.y * size.y),
+            state.prevPos,
+            state.position,
             delta
-            ), size.multiply(this.getTexture(state).inGameSize), Direction.lerp(state.prevDir, state.direction, delta)
+            ), this.getTexture(state).inGameSize, Direction.lerp(state.prevDir, state.direction, delta)
         );
     }
 

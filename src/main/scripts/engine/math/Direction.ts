@@ -3,6 +3,8 @@ import {lerp} from "./math";
 import Vector2 from "./Vector2";
 
 export default class Direction implements Dirtyable{
+    public static readonly ZERO = new Direction(0);
+
     public yaw: number;
 
     private dirty: boolean;
@@ -23,6 +25,27 @@ export default class Direction implements Dirtyable{
     }
     static add(a: Direction, b: Direction | number): Direction {
         return a.add(b);
+    }
+
+    subtract(amt: Direction | number): Direction {
+        return new Direction(this.yaw - ((amt instanceof Direction) ? amt.yaw : amt));
+    }
+    static subtract(a: Direction, b: Direction | number): Direction {
+        return a.subtract(b);
+    }
+
+    multiply(amt: Direction | number): Direction {
+        return new Direction(this.yaw * ((amt instanceof Direction) ? amt.yaw : amt));
+    }
+    static multiply(a: Direction, b: Direction | number): Direction {
+        return a.multiply(b);
+    }
+
+    divide(amt: Direction | number): Direction {
+        return new Direction(this.yaw / ((amt instanceof Direction) ? amt.yaw : amt));
+    }
+    static divide(a: Direction, b: Direction | number): Direction {
+        return a.divide(b);
     }
 
     turn(amt: Direction | number): Direction {

@@ -8,7 +8,6 @@ export default class CanvasRenderer extends Renderer {
 
     constructor(canvas: HTMLCanvasElement, ctx?: CanvasRenderingContext2D) {
         super(canvas);
-
         if(ctx)
             this.ctx = ctx;
         else
@@ -25,11 +24,16 @@ export default class CanvasRenderer extends Renderer {
         if(direction) {
             this.ctx.save();
             this.ctx.translate(pos.x + this.offset.x, pos.y + this.offset.y);
+            this.ctx.translate(size.x / 2, size.y / 2);
             this.ctx.rotate(-direction.yaw);
+            this.ctx.translate(-size.x / 2, -size.y / 2);
+            // this.ctx.translate(texture.width / 2, texture.height / 2);
             this.ctx.drawImage(texture.image, texture.pos.x, texture.pos.y, texture.size.x, texture.size.y, 0, 0, size.x, size.y);
             this.ctx.restore();
         } else {
-            this.ctx.drawImage(texture.image, texture.pos.x, texture.pos.y, texture.size.x, texture.size.y, pos.x + this.offset.x, pos.y + this.offset.y, size.x, size.y);
+            this.ctx.drawImage(texture.image,
+                texture.pos.x, texture.pos.y, texture.size.x, texture.size.y,
+                pos.x + this.offset.x, pos.y + this.offset.y, size.x, size.y);
         }
     }
 

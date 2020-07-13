@@ -20,6 +20,7 @@ export default class World implements Identifiable {
 
     public generators: ChunkGenerator[] = [];
 
+    public scheduledTicks: {(): void}[] = [];
     public lastTick: number;
 
     constructor(...generators: ChunkGenerator[]) {
@@ -37,9 +38,15 @@ export default class World implements Identifiable {
         for(let entity of this.entities) {
             entity.tick();
         }
+        for(let i = 0; i < this.scheduledTicks.length; i++) {
+            this.scheduledTicks.shift()();
+        }
         this.ticks++;
         this.cTPS++;
         this.ms = Date.now() - this.lastTick;
+    }
+    scheduleTick(tick: {(): void}): void {
+        this.scheduledTicks.push(tick);
     }
 
     countTicks(): void {
@@ -47,8 +54,8 @@ export default class World implements Identifiable {
         this.cTPS = 0;
     }
 
-    spawnEntity(entity: EntityState): World {
-        this.addEntity(entity);
+    spawnEntity(state: EntityState): World {
+        this.addEntity(state);
         return this;
     }
 
@@ -69,6 +76,23 @@ export default class World implements Identifiable {
     public getChunkXY(x: number, y: number): Chunk {
         return this.getChunk(new Vector2(x, y));
     }
+    isChunk(position: Vector2): boolean {
+        return !!this.chunks.get(position);
+    }
+    isChunkWorldCoords(position: Vector2): boolean {
+        return this.isChunk(position.divide(Chunk.size).floor());
+    }
+    public removeChunk(position: Vector2): boolean {
+        return this.chunks.delete(position);
+    }
+    public removeChunkWorldCoords(position: Vector2): boolean {
+        return this.removeChunk(position.divide(Chunk.size).floor());
+    }
+
+    getBlockState(position: Vector2) {
+        return this.getChunk(position.divide(Chunk.size).floor()).getBlockState(position);
+    }
+
     addGenerator(generator: ChunkGenerator): World {
         this.generators.push(generator);
         return this;
@@ -77,6 +101,7 @@ export default class World implements Identifiable {
         this.generators = this.generators.concat(generators);
         return this;
     }
+
     generateChunk(position: Vector2): Chunk {
         let chunk: Chunk = new Chunk(this, position);
         for(let generator of this.generators) {
@@ -86,6 +111,7 @@ export default class World implements Identifiable {
     }
     addChunk(chunk: Chunk): Chunk {
         this.chunks.set(chunk.position, chunk);
+        chunk.updateAll();
         return chunk;
     }
 }

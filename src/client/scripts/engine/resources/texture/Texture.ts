@@ -26,9 +26,13 @@ export default class Texture extends Resource {
         return this;
     }
 
+    /**
+     * TODO: come up with a better solution lol
+     * There were weird line things
+     */
     setViewport(sX: number, sY: number, sW: number, sH: number): Texture {
         this.pos = new Vector2(sX, sY);
-        this.size = new Vector2(sW, sH);
+        this.size = new Vector2(sW - 0.001, sH - 0.001);
         return this;
     }
 

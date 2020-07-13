@@ -1,44 +1,62 @@
 import EntityState from "../../../engine/entity/state/EntityState";
-import EntityType from "../../../engine/entity/type/EntityType";
-import Vector2 from "../../../engine/math/Vector2";
 import Direction from "../../../engine/math/Direction";
-import Random from "../../../engine/math/Random";
-import {PI, TAU} from "../../../engine/math/math";
+import Sounds from "../../../../../client/scripts/Sounds";
 
 export default class FrogEntityState extends EntityState {
     public hopping = false;
     private hoppingTick = 0;
 
-    constructor(type: EntityType, position: Vector2, direction: Direction) {
-        super(type, position, direction);
-    }
+    public hopQueue: Direction[] = []
 
     tick(): void {
         super.tick();
-        if(this.hopping && this.WORLD.ticks - this.hoppingTick > 3) {
+        if(this.hopping && this.WORLD.ticks - this.hoppingTick > 2) {
             this.unhop();
-        } else if(Random.nextFloat() > 0.95) {
-            this.hop();
-        } else if(Random.nextFloat() > 0.99) {
-            this.turn(new Direction(Random.nextFloatInRange(-PI/2, PI/2)));
         }
-        // console.log(TAU);
+        this.hop(this.hopQueue.shift());
+
+        for (let entity of this.WORLD.entities) {
+            if (entity != this && this.collidesWith(entity)) {
+                this.onCollidesWith(entity);
+            }
+        }
+    }
+
+    onCollidesWith(other: EntityState): void {
+        // console.log(other);
+        // if(EntityTags.KILLS_PLAYER.has(other.TYPE))
+            console.log("lol XD sklaks");
+        Sounds.FROG_HIT_CAR.play();
 
     }
 
-    hop(): void {
-        this.hopping = true;
-        this.hoppingTick = this.WORLD.ticks;
-        this.moveTo(this.position.raycast(this.direction, 1));
+    hop(direction: Direction): void {
+        if(!direction)
+            return;
+        if(this.isHopping()) {
+            this.hopQueue.push(direction);
+        } else {
+            this.lookTo(direction);
+            this.hopping = true;
+            this.hoppingTick = this.WORLD.ticks;
+            this.moveTo(this.position.raycast(this.direction, 1));
+        }
     }
 
     unhop(): void {
         this.hopping = false;
     }
 
+    isHopping(): boolean {
+        return this.hopping;
+    }
+
+    // getCollisionBoxSize(): Vector2 {
+    //     return new Vector2(0.5, 0.5);
+    // }
+
     clone(): EntityState {
-        return new FrogEntityState(this.TYPE, this.position, this.direction)
+        return new FrogEntityState(this.TYPE, this.WORLD, this.position, this.direction)
             .setDefaultRenderer(this.RENDERER)
-            .setWorld(this.WORLD);
     }
 }

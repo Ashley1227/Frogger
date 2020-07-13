@@ -8,3 +8,19 @@ export var TAU = PI * 2;
 export function lerp(a: number, b: number, by: number) {
     return a * (1 - by) + b * by;
 }
+
+export function abs(a: number): number {
+    return Math.abs(a);
+}
+
+export function floor(a: number): number {
+    return Math.floor(a);
+}
+
+export function round(a: number): number {
+    return Math.round(a);
+}
+
+export function ceil(a: number): number {
+    return Math.ceil(a);
+}

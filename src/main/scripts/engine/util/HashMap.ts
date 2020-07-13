@@ -1,10 +1,10 @@
 import Hashable from "../interfaces/Hashable";
 
 export default class HashMap<K extends Hashable, V> implements Map<K, V> {
-    readonly [Symbol.toStringTag]: string;
-    readonly size: number;
+    public [Symbol.toStringTag]: string;
+    public size: number;
 
-    private map: Map<string, [K, V]>;
+    public map: Map<string, [K, V]>;
 
     constructor() {
         this.map = new Map<string, [K, V]>();

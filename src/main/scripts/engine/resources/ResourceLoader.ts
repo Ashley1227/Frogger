@@ -6,7 +6,7 @@ export default abstract class ResourceLoader {
 
     static loadResource(identifier: Identifier): Resource {
         this._amount++;
-        return null;
+        return;
     };
 
     static isDone(): boolean {

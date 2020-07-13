@@ -11,7 +11,7 @@ export default class BlockType implements Identifiable {
 
     public RENDER_TYPE: BlockRenderType = BlockRenderTypes.BASIC;
 
-    public DEFAULT_STATE: BlockState;
+    private DEFAULT_STATE: BlockState;
 
     constructor(settings: BlockSettings) {
         this.SETTINGS = settings;
@@ -29,6 +29,9 @@ export default class BlockType implements Identifiable {
     setDefaultState(state: BlockState): BlockState {
         this.DEFAULT_STATE = state;
         return this.DEFAULT_STATE;
+    }
+    createState(): BlockState {
+        return this.DEFAULT_STATE.clone();
     }
     basicBlockState(): BlockState {
         return this.setDefaultState(new BlockState(this));

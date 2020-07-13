@@ -9,9 +9,9 @@ export default class FrogEntityStateRenderer extends BasicEntityStateRenderer<Fr
     }
 
     getTexture(state: FrogEntityState): Texture {
-        if(state.hopping)
-            return Textures.FROG_MOVING
+        if(state.isHopping())
+            return Textures.FROG_MOVING;
         else
-            return Textures.FROG_STATIONARY
+            return Textures.FROG_STATIONARY;
     }
 }

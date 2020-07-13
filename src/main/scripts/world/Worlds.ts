@@ -9,7 +9,7 @@ console.debug("");
 console.debug("Worlds");
 console.debug("==========");
 export default class Worlds {
-    public static WORLD: FroggerWorld = Worlds.register(new FroggerWorld().addGenerators(ChunkGenerators.GRASS, ChunkGenerators.FLOWERS), "world");
+    public static WORLD: FroggerWorld = Worlds.register(new FroggerWorld().addGenerators(ChunkGenerators.GRASS, ChunkGenerators.ROADS, ChunkGenerators.FLOWERS), "world");
 
     static register(world: World, name: string): World {
         return Registry.register(Registries.WORLDS, world, new Identifier("frogger", name));

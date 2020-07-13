@@ -3,6 +3,9 @@ import World from "../../world/World";
 import Direction from "../../math/Direction";
 import EntityType from "../type/EntityType";
 import Identifier from "../../identifier/Identifier";
+import EntityBehavior from "../behavior/EntityBehavior";
+import AxisAlignedBoundingBox from "../../math/AxisAlignedBoundingBox";
+import BoundingBox from "../../math/BoundingBox";
 
 export default abstract class EntityState {
     public TYPE: EntityType;
@@ -15,58 +18,92 @@ export default abstract class EntityState {
     public direction: Direction;
     public prevDir: Direction;
 
-    constructor(type: EntityType, position: Vector2, direction: Direction) {
+    public behaviors: EntityBehavior<this>[];
+
+    public constructor(type: EntityType, world: World,  position: Vector2, direction: Direction) {
         this.TYPE = type;
+        this.WORLD = world;
 
         this.teleportTo(position);
-
         this.teleportLookTo(direction);
+
+        this.behaviors = [];
     }
 
-    abstract clone(): EntityState;
+    public abstract clone(): EntityState;
 
-    moveTo(position: Vector2): EntityState {
+    public moveTo(position: Vector2): EntityState {
         this.prevPos = this.position;
         this.position = position;
         return this;
     }
-    teleportTo(position: Vector2): EntityState {
+    public move(vector2: Vector2): EntityState {
+        this.moveTo(this.position.add(vector2));
+        return this;
+    }
+    public teleportTo(position: Vector2): EntityState {
         this.prevPos = position;
         this.position = position;
         return this;
     }
 
-    lookTo(direction: Direction): EntityState {
+    public lookTo(direction: Direction): EntityState {
         this.prevDir = this.direction;
         this.direction = direction;
         return this;
     }
-    teleportLookTo(direction: Direction): EntityState {
+    public teleportLookTo(direction: Direction): EntityState {
         this.prevDir = direction;
         this.direction = direction;
         return this;
     }
-    turn(direction: Direction): EntityState {
+    public turn(direction: Direction): EntityState {
         this.lookTo(this.direction.add(direction));
         return this;
     }
 
-    setWorld(world: World): EntityState {
+    public setWorld(world: World): EntityState {
         this.WORLD = world;
         return this;
     }
 
-    tick(): void {
-        this.prevPos = this.position;
-        this.prevDir = this.direction;
+    public setBehaviors(behaviors: EntityBehavior<this>[]): EntityState {
+        this.behaviors = behaviors;
+        return this;
+    }
+    public addBehaviors(...behaviors: EntityBehavior<this>[]): EntityState {
+        return this.setBehaviors(this.behaviors.concat(behaviors));
     }
 
-    setDefaultRenderer(renderer: Identifier): EntityState {
+    public tick(): void {
+        this.prevPos = this.position;
+        this.prevDir = this.direction;
+        for(let b of this.behaviors) {
+            b.tick(this);
+        }
+    }
+
+    public setDefaultRenderer(renderer: Identifier): EntityState {
         this.RENDERER = renderer;
         return this;
     }
 
-    getRenderer(position: Vector2): Identifier {
+    public getRenderer(position: Vector2): Identifier {
         return this.RENDERER;
+    }
+
+    public collidesWith(other: EntityState): boolean {
+        return this.getCollisionBox().intersects(other.getCollisionBox());
+    }
+
+    // public collidesWith(other: EntityState): boolean {
+    //     return other.getCollisionBox().intersects(this.getCollisionBox());
+    // }
+
+    public getCollisionBox(): BoundingBox {
+        return new AxisAlignedBoundingBox(this.position, this.getCollisionBoxSize());
+    }
+    public getCollisionBoxSize(): Vector2 {
+        return Vector2.ONE;
     }
 }
