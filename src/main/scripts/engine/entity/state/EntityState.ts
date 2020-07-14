@@ -6,11 +6,12 @@ import Identifier from "../../identifier/Identifier";
 import EntityBehavior from "../behavior/EntityBehavior";
 import AxisAlignedBoundingBox from "../../math/AxisAlignedBoundingBox";
 import BoundingBox from "../../math/BoundingBox";
+import EntityStateRenderer from "../../../../../client/scripts/engine/entity/state/renderer/EntityStateRenderer";
 
 export default abstract class EntityState {
     public TYPE: EntityType;
     public WORLD: World;
-    public RENDERER: Identifier;
+    public RENDERER: EntityStateRenderer<this>;
 
     public position: Vector2;
     public prevPos: Vector2;
@@ -83,22 +84,18 @@ export default abstract class EntityState {
         }
     }
 
-    public setDefaultRenderer(renderer: Identifier): EntityState {
+    public setDefaultRenderer(renderer: EntityStateRenderer<this>): EntityState {
         this.RENDERER = renderer;
         return this;
     }
 
-    public getRenderer(position: Vector2): Identifier {
+    public getRenderer(): EntityStateRenderer<this> {
         return this.RENDERER;
     }
 
     public collidesWith(other: EntityState): boolean {
         return this.getCollisionBox().intersects(other.getCollisionBox());
     }
-
-    // public collidesWith(other: EntityState): boolean {
-    //     return other.getCollisionBox().intersects(this.getCollisionBox());
-    // }
 
     public getCollisionBox(): BoundingBox {
         return new AxisAlignedBoundingBox(this.position, this.getCollisionBoxSize());

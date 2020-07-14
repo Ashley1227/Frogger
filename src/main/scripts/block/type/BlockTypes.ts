@@ -39,10 +39,10 @@ export default class BlockTypes {
     );
 
     static initialiseClass() {
-        this.DIRT.basicBlockState().setDefaultRenderer(new Identifier("frogger", "dirt"));
-        this.GRASS.setDefaultState(new GrassBlockState(this.GRASS).setDefaultRenderer(new Identifier("frogger", "grass")));
-        this.RED_FLOWER.basicBlockState().setDefaultRenderer(new Identifier("frogger", "red_flower"));
-        this.ASPHALT.basicBlockState().setDefaultRenderer(new Identifier("frogger", "asphalt"));
+        this.DIRT.basicBlockState().setDefaultRenderer(Renderers.DIRT);
+        this.GRASS.setDefaultState(new GrassBlockState(this.GRASS).setDefaultRenderer(Renderers.GRASS));
+        this.RED_FLOWER.basicBlockState().setDefaultRenderer(Renderers.RED_FLOWER);
+        this.ASPHALT.basicBlockState().setDefaultRenderer(Renderers.ASPHALT);
     }
 
     static register(block: BlockType, name: string): BlockType {

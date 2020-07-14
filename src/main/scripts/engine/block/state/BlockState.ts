@@ -1,13 +1,13 @@
-import Identifier from "../../identifier/Identifier";
 import BlockType from "../type/BlockType";
 import Vector2 from "../../math/Vector2";
 import Chunk from "../../world/chunk/Chunk";
 import World from "../../world/World";
+import BlockStateRenderer from "../../../../../client/scripts/engine/block/state/renderer/BlockStateRenderer";
 
 export default class BlockState {
     public TYPE: BlockType;
 
-    public RENDERER: Identifier;
+    public RENDERER: BlockStateRenderer<this>;
 
     constructor(type: BlockType) {
         this.TYPE = type;
@@ -17,12 +17,12 @@ export default class BlockState {
 
     }
 
-    setDefaultRenderer(renderer: Identifier): BlockState {
+    setDefaultRenderer(renderer: BlockStateRenderer<this>): BlockState {
         this.RENDERER = renderer;
         return this;
     }
 
-    getRenderer(position: Vector2): Identifier {
+    getRenderer(position: Vector2): BlockStateRenderer<this> {
         return this.RENDERER;
     }
 

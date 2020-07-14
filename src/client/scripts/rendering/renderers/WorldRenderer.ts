@@ -29,7 +29,7 @@ export default class WorldRenderer extends CameraCanvasRenderer {
             this.CHUNK_RENDERER.renderChunk(chunk);
         }
         for(let entityState of world.entities) {
-            (<EntityStateRenderer<EntityState>>ClientRegistries.RENDERERS.get(entityState.RENDERER)).renderEntityState(
+            entityState.getRenderer().renderEntityState(
                 entityState.position, entityState
             );
         }

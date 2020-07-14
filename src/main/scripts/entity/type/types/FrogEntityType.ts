@@ -4,10 +4,10 @@ import EntityState from "../../../engine/entity/state/EntityState";
 import FrogEntityState from "../../state/states/FrogEntityState";
 import World from "../../../engine/world/World";
 import Direction from "../../../engine/math/Direction";
-import Identifier from "../../../engine/identifier/Identifier";
+import Renderers from "../../../../../client/scripts/rendering/Renderers";
 
 export default class FrogEntityType extends EntityType {
     createState(world: World, position: Vector2, direction: Direction): EntityState {
-        return new FrogEntityState(this, world, position, direction).setDefaultRenderer(new Identifier("frogger", "frog"));
+        return new FrogEntityState(this, world, position, direction).setDefaultRenderer(Renderers.FROG);
     }
 }

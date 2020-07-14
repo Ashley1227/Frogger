@@ -16,7 +16,7 @@ export default class ChunkRenderer extends CameraCanvasRenderer {
             for(let x: number = 0; x < 16; x++) {
                 let pos = new Vector2(x, y);
                 let blockState: BlockState = chunk.getBlockStateRelativeToChunk(pos);
-                (<BlockStateRenderer<any>>ClientRegistries.RENDERERS.get(blockState.getRenderer(pos))).renderBlockState(
+                blockState.getRenderer(pos).renderBlockState(
                     chunk.position.multiply(Chunk.size).add(pos),
                     chunk.getBlockStateRelativeToChunk(pos)
                 );
