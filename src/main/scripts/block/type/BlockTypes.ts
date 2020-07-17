@@ -8,6 +8,7 @@ import BlockState from "../../engine/block/state/BlockState";
 import Textures from "../../../../client/scripts/Textures";
 import Renderers from "../../../../client/scripts/rendering/Renderers";
 import GrassBlockState from "../state/states/GrassBlockState";
+import AsphaltBlockState from "../state/states/AsphaltBlockState";
 
 console.debug("");
 console.debug("Block Types");
@@ -18,6 +19,12 @@ export default class BlockTypes {
             new BlockSettings()
         ),
         "dirt"
+    );
+    public static WATER: BlockType = BlockTypes.register(
+        new BlockType(
+            new BlockSettings()
+        ),
+        "water"
     );
     public static GRASS: BlockType = BlockTypes.register(
         new GrassBlockType(
@@ -40,13 +47,13 @@ export default class BlockTypes {
 
     static initialiseClass() {
         this.DIRT.basicBlockState().setDefaultRenderer(Renderers.DIRT);
+        this.WATER.basicBlockState().setDefaultRenderer(Renderers.WATER);
         this.GRASS.setDefaultState(new GrassBlockState(this.GRASS).setDefaultRenderer(Renderers.GRASS));
         this.RED_FLOWER.basicBlockState().setDefaultRenderer(Renderers.RED_FLOWER);
-        this.ASPHALT.basicBlockState().setDefaultRenderer(Renderers.ASPHALT);
+        this.ASPHALT.setDefaultState(new AsphaltBlockState(this.ASPHALT).setDefaultRenderer(Renderers.ASPHALT));
     }
 
     static register(block: BlockType, name: string): BlockType {
         return Registry.register(Registries.BLOCK_TYPES, block, new Identifier("frogger", name));
     }
 }
-BlockTypes.initialiseClass();

@@ -24,7 +24,7 @@ export default class RandomReplaceChunkGenerator extends PerBlockChunkGenerator 
         this.random = new Random();
     }
     generate(chunk: Chunk): Chunk {
-        this.random.state = abs(chunk.position.x * Chunk.size.x * chunk.position.x * Chunk.size.x * chunk.position.y * Chunk.size.y);
+        this.random.state = abs(chunk.position.x * Chunk.SIZE.x * chunk.position.x * Chunk.SIZE.x * chunk.position.y * Chunk.SIZE.y);
         return super.generate(chunk);
     }
 

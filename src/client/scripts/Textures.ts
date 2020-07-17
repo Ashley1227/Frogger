@@ -11,12 +11,16 @@ console.debug("Textures");
 console.debug("==========");
 export default class Textures {
     // Texture maps
-    static BLOCKS: Texture = Textures.register(TextureLoader.loadResource(new Identifier("frogger", "blocks")), "blocks");
+    static BLOCKS: Texture = Textures.register(TextureLoader.loadResource(new Identifier("frogger", "block/blocks")), "blocks");
+    static WATER: Texture = Textures.register(TextureLoader.loadResource(new Identifier("frogger", "block/water")), "water");
+
     static FROGS: Texture = Textures.register(TextureLoader.loadResource(new Identifier("frogger", "entity/frog")), "frog");
     static CARS: Texture = Textures.register(TextureLoader.loadResource(new Identifier("frogger", "entity/car")), "cars");
 
-    static FROG_MAP: TexMap = new TexMap(Textures.FROGS).setSubSize(16, 16);
     static BLOCKS_MAP: TexMap = new TexMap(Textures.BLOCKS).setSubSize(16, 16);
+    static WATER_MAP: TexMap = new TexMap(Textures.WATER).setSubSize(16, 16);
+
+    static FROG_MAP: TexMap = new TexMap(Textures.FROGS).setSubSize(16, 16);
     static CARS_MAP: TexMap = new TexMap(Textures.CARS).setSubSize(32, 16);
 
     // Blocks
@@ -24,6 +28,8 @@ export default class Textures {
     static STREAKY_DIRT: Texture = Textures.register(Textures.BLOCKS_MAP.createSub(1, 0), "streaky_dirt");
     static WAVY_DIRT: Texture = Textures.register(Textures.BLOCKS_MAP.createSub(2, 0), "wavy_dirt");
     static CRACKED_DIRT: Texture = Textures.register(Textures.BLOCKS_MAP.createSub(3, 0), "cracked_dirt");
+
+    static WATER_0: Texture = Textures.register(Textures.WATER_MAP.createSub(0, 0), "water_0");
 
     static GRASS_0: Texture = Textures.register(Textures.BLOCKS_MAP.createSub(4, 0), "grass_0");
     static GRASS_1: Texture = Textures.register(Textures.BLOCKS_MAP.createSub(5, 0), "grass_1");

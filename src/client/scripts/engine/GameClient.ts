@@ -23,6 +23,9 @@ export default class GameClient {
         this.world = world
         return this;
     }
+    tick(): GameClient {
+        return this;
+    }
     render(): GameClient {
         this.renderer.render();
         window.requestAnimationFrame(() => this.render());

@@ -3,9 +3,9 @@ import Random from "../../../../../main/scripts/engine/math/Random";
 
 export default class Sound extends Resource {
     public context: AudioContext;
-    public audio: HTMLAudioElement[];
+    public audio: (Sound | HTMLAudioElement)[];
 
-    public constructor(...audio: HTMLAudioElement[]) {
+    public constructor(...audio: (HTMLAudioElement | Sound)[]) {
         super();
         this.audio = audio;
     }

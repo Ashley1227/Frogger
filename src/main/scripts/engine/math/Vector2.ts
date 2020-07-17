@@ -1,6 +1,6 @@
 import Direction from "./Direction";
 import Hashable from "../interfaces/Hashable";
-import {lerp} from "./math";
+import {lerp, sqrt, square} from "./math";
 
 export default class Vector2 implements Hashable {
     public static readonly ZERO: Vector2 = new Vector2(0, 0);
@@ -78,6 +78,48 @@ export default class Vector2 implements Hashable {
     }
     static round(a: Vector2): Vector2 {
         return a.round();
+    }
+
+    decrement(): Vector2 {
+        return this.subtract(Vector2.ONE);
+    }
+    static decrement(a: Vector2): Vector2 {
+        return a.decrement();
+    }
+
+    increment(): Vector2 {
+        return this.add(Vector2.ONE);
+    }
+    static increment(a: Vector2): Vector2 {
+        return a.increment();
+    }
+
+    distanceX(other: Vector2): number {
+        return this.x - other.x;
+    }
+    static distanceX(a: Vector2, b: Vector2): number {
+        return a.distanceX(b);
+    }
+
+    distanceY(other: Vector2): number {
+        return this.y - other.y;
+    }
+    static distanceY(a: Vector2, b: Vector2): number {
+        return a.distanceY(b);
+    }
+
+    taxicabDistance(other: Vector2): number {
+        return this.distanceX(other) + this.distanceY(other);
+    }
+    static taxicabDistance(a: Vector2, b: Vector2): number {
+        return a.taxicabDistance(b);
+    }
+
+    euclideanDistance(other: Vector2): number {
+        return sqrt(square(this.x - other.x) + square(this.y - other.y));
+    }
+    static euclideanDistance(a: Vector2, b: Vector2): number {
+        return a.euclideanDistance(b);
     }
 
     ceil(): Vector2 {

@@ -9,9 +9,9 @@ export default abstract class PerBlockChunkGenerator extends ChunkGenerator {
     }
 
     generate(chunk: Chunk): Chunk {
-        for(let x = 0; x < Chunk.size.x; x++) {
-            for(let y = 0; y < Chunk.size.y; y++) {
-                this.generateBlock(chunk, new Vector2(x, y), new Vector2(x, y).add(chunk.position.multiply(Chunk.size)));
+        for(let x = 0; x < Chunk.SIZE.x; x++) {
+            for(let y = 0; y < Chunk.SIZE.y; y++) {
+                this.generateBlock(chunk, new Vector2(x, y), new Vector2(x, y).add(chunk.position.multiply(Chunk.SIZE)));
             }
         }
         return chunk;

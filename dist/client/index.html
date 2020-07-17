@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Gaming</title>
+    <title>Frogger</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
 
     <script src="https://unpkg.com/systemjs@2.1.1/dist/s.js"></script>
@@ -16,25 +16,23 @@
     <script>
         AudioContext = window.AudioContext || window.webkitAudioContext;
 
-
         System.import("main/scripts/engine/registry/Registries");
-        System.import("main/scripts/block/type/BlockTypes");
-        System.import("main/scripts/entity/type/EntityTypes");
-        System.import("main/scripts/tag/tags/EntityTags");
-        System.import("main/scripts/tag/tags/BlockTags");
-
         System.import("client/scripts/engine/registry/ClientRegistries");
+        // System.import("main/scripts/block/type/BlockTypes");
+        // System.import("main/scripts/entity/type/EntityTypes");
+        // System.import("main/scripts/tag/tags/EntityTags");
+        // System.import("main/scripts/tag/tags/BlockTags");
+        // System.import("client/scripts/rendering/Renderers");
+        // System.import("client/scripts/Textures");
+        // System.import("client/scripts/Sounds");
+        // System.import("client/scripts/engine/input/keyboard/Keys");
+        // System.import("client/scripts/engine/input/mouse/MouseButtons");
+        // System.import("client/scripts/input/Controls");
+        // System.import("client/scripts/FroggerClient");
+        System.import("main/scripts/server");
+        System.import("client/scripts/client");
 
-        System.import("client/scripts/rendering/Renderers");
-
-        System.import("client/scripts/Textures");
-        System.import("client/scripts/Sounds");
-        System.import("client/scripts/engine/input/keyboard/Keys");
-        System.import("client/scripts/engine/input/mouse/MouseButtons");
-        System.import("client/scripts/input/Controls");
-
-        System.import("client/scripts/FroggerClient");
-        System.import("client/scripts/main");
+        System.import("main/scripts/main");
     </script>
 </body>
 </html>

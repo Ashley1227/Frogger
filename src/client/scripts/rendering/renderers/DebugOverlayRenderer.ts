@@ -1,7 +1,7 @@
 import Vector2 from "../../../../main/scripts/engine/math/Vector2";
 import Renderers from "../Renderers";
 import TextRenderer from "../../engine/rendering/renderer/renderers/TextRenderer";
-import {client} from "../../main";
+import {client} from "../../client";
 
 export default class DebugOverlayRenderer extends TextRenderer {
     public fps: number = 0;

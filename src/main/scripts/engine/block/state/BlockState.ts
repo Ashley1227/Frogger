@@ -13,20 +13,24 @@ export default class BlockState {
         this.TYPE = type;
     }
 
-    update(world: World, chunk: Chunk, worldPosition: Vector2, chunkPosition: Vector2) {
+    public update(world: World, chunk: Chunk, worldPosition: Vector2, chunkPosition: Vector2) {
 
     }
 
-    setDefaultRenderer(renderer: BlockStateRenderer<this>): BlockState {
+    public randomTick(world: World, chunk: Chunk, worldPosition: Vector2, chunkPosition: Vector2): void {
+        
+    }
+
+    public setDefaultRenderer(renderer: BlockStateRenderer<this>): BlockState {
         this.RENDERER = renderer;
         return this;
     }
 
-    getRenderer(position: Vector2): BlockStateRenderer<this> {
+    public getRenderer(position: Vector2): BlockStateRenderer<this> {
         return this.RENDERER;
     }
 
-    clone() {
+    public clone() {
         return new BlockState(this.TYPE).setDefaultRenderer(this.RENDERER);
     }
 }

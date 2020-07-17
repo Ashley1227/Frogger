@@ -1,7 +1,7 @@
 import Camera from "./Camera";
 import Vector2 from "../../../../../main/scripts/engine/math/Vector2";
 import EntityState from "../../../../../main/scripts/engine/entity/state/EntityState";
-import World from "../../../../../main/scripts/engine/world/World";
+import {client} from "../../../client";
 
 export default class FollowEntityCamera extends Camera {
     public entity: EntityState;
@@ -16,7 +16,7 @@ export default class FollowEntityCamera extends Camera {
 
     render(canvas: HTMLCanvasElement): void {
         super.render(canvas);
-        this.delta = (Date.now() - this.entity.WORLD.lastTick) / World.TICK_INTERVAL;
+        this.delta = (Date.now() - this.entity.WORLD.lastTick) / client.world.settings.TICK_INTERVAL;
     }
 
     getPosition(): Vector2 {

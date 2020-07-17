@@ -22,4 +22,3 @@ export default class EntityTypes {
         return <T>Registry.register(Registries.ENTITY_TYPES, type, new Identifier("frogger", name));
     }
 }
-EntityTypes.initialiseClass();

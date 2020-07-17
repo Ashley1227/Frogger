@@ -2,7 +2,6 @@ import Vector2 from "../../math/Vector2";
 import World from "../../world/World";
 import Direction from "../../math/Direction";
 import EntityType from "../type/EntityType";
-import Identifier from "../../identifier/Identifier";
 import EntityBehavior from "../behavior/EntityBehavior";
 import AxisAlignedBoundingBox from "../../math/AxisAlignedBoundingBox";
 import BoundingBox from "../../math/BoundingBox";
@@ -21,6 +20,8 @@ export default abstract class EntityState {
 
     public behaviors: EntityBehavior<this>[];
 
+    public shouldBeRemoved: boolean;
+
     public constructor(type: EntityType, world: World,  position: Vector2, direction: Direction) {
         this.TYPE = type;
         this.WORLD = world;
@@ -29,6 +30,7 @@ export default abstract class EntityState {
         this.teleportLookTo(direction);
 
         this.behaviors = [];
+        this.shouldBeRemoved = false;
     }
 
     public abstract clone(): EntityState;
@@ -84,6 +86,11 @@ export default abstract class EntityState {
         }
     }
 
+    public remove(): EntityState {
+        this.shouldBeRemoved = true;
+        return this;
+    }
+
     public setDefaultRenderer(renderer: EntityStateRenderer<this>): EntityState {
         this.RENDERER = renderer;
         return this;
@@ -97,7 +104,7 @@ export default abstract class EntityState {
         return this.getCollisionBox().intersects(other.getCollisionBox());
     }
 
-    public getCollisionBox(): BoundingBox {
+    public getCollisionBox(): AxisAlignedBoundingBox {
         return new AxisAlignedBoundingBox(this.position, this.getCollisionBoxSize());
     }
     public getCollisionBoxSize(): Vector2 {

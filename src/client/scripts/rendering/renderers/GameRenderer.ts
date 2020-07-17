@@ -3,14 +3,14 @@ import ClientRegistries from "../../engine/registry/ClientRegistries";
 import Renderers from "../Renderers";
 import WorldRenderer from "./WorldRenderer";
 import DebugOverlayRenderer from "./DebugOverlayRenderer";
-import {client} from "../../main";
 import Controls from "../../input/Controls";
 import Vector2 from "../../../../main/scripts/engine/math/Vector2";
 import Keys from "../../engine/input/keyboard/Keys";
 import FollowEntityCamera from "../../engine/rendering/camera/FollowEntityCamera";
 import FrogEntityState from "../../../../main/scripts/entity/state/states/FrogEntityState";
 import Direction from "../../../../main/scripts/engine/math/Direction";
-import {PI, TAU} from "../../../../main/scripts/engine/math/math";
+import {PI} from "../../../../main/scripts/engine/math/math";
+import {client} from "../../client";
 
 export default class GameRenderer extends PixelatedCanvasRenderer {
     private WORLD_RENDERER: WorldRenderer;

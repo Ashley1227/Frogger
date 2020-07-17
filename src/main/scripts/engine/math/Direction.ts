@@ -1,23 +1,14 @@
-import Dirtyable from "../interfaces/Dirtyable";
 import {lerp} from "./math";
-import Vector2 from "./Vector2";
 
-export default class Direction implements Dirtyable{
+export default class Direction {
     public static readonly ZERO = new Direction(0);
 
     public yaw: number;
 
     private dirty: boolean;
 
-    private x: number;
-    private y: number;
-
     constructor(yaw: number) {
-        this.markDirty();
         this.yaw = yaw;
-
-        this.x = this.getX();
-        this.y = this.getX();
     }
 
     add(amt: Direction | number): Direction {
@@ -56,13 +47,6 @@ export default class Direction implements Dirtyable{
     static lerp(a: Direction, b: Direction, by: number): Direction {
         let ret: Direction = new Direction(lerp(a.yaw, b.yaw, by));
         return ret;
-    }
-
-    markDirty(): void {
-        this.dirty = true;
-    }
-    isDirty(): boolean {
-        return this.dirty
     }
     getX(): number {
         return -Math.sin(this.yaw);

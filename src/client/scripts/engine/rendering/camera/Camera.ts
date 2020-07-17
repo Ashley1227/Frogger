@@ -1,8 +1,8 @@
 import Vector2 from "../../../../../main/scripts/engine/math/Vector2";
 
 export default class Camera {
-    public position: Vector2;
-    public prevPos: Vector2;
+    private position: Vector2;
+    private prevPos: Vector2;
 
     public scale: Vector2;
     public prevScale: Vector2 = Vector2.ZERO;

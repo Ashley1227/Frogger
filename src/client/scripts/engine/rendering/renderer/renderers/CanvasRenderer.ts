@@ -37,8 +37,8 @@ export default class CanvasRenderer extends Renderer {
         }
     }
 
-    drawRect(x: number, y: number, w: number, h: number, fillStyte: string): void {
-        this.ctx.fillStyle = fillStyte;
-        this.ctx.fillRect(x, y, w, h);
+    drawRect(position: Vector2, size: Vector2, fillStyle: string): void {
+        this.ctx.fillStyle = fillStyle;
+        this.ctx.fillRect(position.x, position.y, size.x, size.y);
     }
 }

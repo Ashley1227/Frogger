@@ -40,6 +40,8 @@ export default class Renderers {
     public static DIRT: BasicBlockStateRenderer<BlockState> = Renderers.registerBlockStateRenderer(new BasicBlockStateRenderer(Renderers.CANVAS).setTexture(Textures.DIRT).initialise(), "dirt");
     public static RED_FLOWER: BasicBlockStateRenderer<BlockState> = Renderers.registerBlockStateRenderer(new BasicBlockStateRenderer(Renderers.CANVAS).setTexture(Textures.RED_FLOWER).initialise(), "red_flower");
 
+    public static WATER: BasicBlockStateRenderer<BlockState> = Renderers.registerBlockStateRenderer(new BasicBlockStateRenderer(Renderers.CANVAS).setTexture(Textures.WATER_0).initialise(), "water");
+
     public static GRASS: GrassBlockStateRenderer = Renderers.registerBlockStateRenderer(new GrassBlockStateRenderer(Renderers.CANVAS)
         .setTextures(
             Textures.GRASS_0,

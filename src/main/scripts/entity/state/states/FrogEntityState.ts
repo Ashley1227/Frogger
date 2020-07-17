@@ -3,16 +3,12 @@ import Direction from "../../../engine/math/Direction";
 import Sounds from "../../../../../client/scripts/Sounds";
 
 export default class FrogEntityState extends EntityState {
-    public hopping = false;
     private hoppingTick = 0;
 
     public hopQueue: Direction[] = []
 
     tick(): void {
         super.tick();
-        if(this.hopping && this.WORLD.ticks - this.hoppingTick > 2) {
-            this.unhop();
-        }
         this.hop(this.hopQueue.shift());
 
         for (let entity of this.WORLD.entities) {
@@ -33,22 +29,18 @@ export default class FrogEntityState extends EntityState {
     hop(direction: Direction): void {
         if(!direction)
             return;
-        if(this.isHopping()) {
+        if(this.WORLD.ticks - this.hoppingTick < 5) {
             this.hopQueue.push(direction);
         } else {
             this.lookTo(direction);
-            this.hopping = true;
             this.hoppingTick = this.WORLD.ticks;
             this.moveTo(this.position.raycast(this.direction, 1));
+            // Sounds.GRASS_STEP.play();
         }
     }
 
-    unhop(): void {
-        this.hopping = false;
-    }
-
     isHopping(): boolean {
-        return this.hopping;
+        return this.WORLD.ticks - this.hoppingTick < 4;
     }
 
     // getCollisionBoxSize(): Vector2 {

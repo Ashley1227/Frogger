@@ -5,7 +5,7 @@ import Chunk from "../../../../engine/world/chunk/Chunk";
 import BlockTypes from "../../../../block/type/BlockTypes";
 import Noise from "../../../../engine/math/noise/Noise";
 
-export default class RoadChunkGenerator extends PerBlockChunkGenerator {
+export default class RiverChunkGenerator extends PerBlockChunkGenerator {
     public noise: Noise;
 
     public constructor(seed?: number) {
@@ -14,8 +14,9 @@ export default class RoadChunkGenerator extends PerBlockChunkGenerator {
     }
 
     public generateBlock(chunk: Chunk, relativePosition: Vector2, absolutePosition: Vector2): BlockState {
-        if(this.noise.simplex2(0, absolutePosition.y / 6) > 0.3) {
-            return chunk.setBlockStateRelativeToChunk(relativePosition, BlockTypes.ASPHALT.createState());
+        if(this.noise.simplex2(0, absolutePosition.y / 8) > 0.3) {
+            return chunk.setBlockStateRelativeToChunk(relativePosition, BlockTypes.WATER.createState());
         }
     }
+
 }
